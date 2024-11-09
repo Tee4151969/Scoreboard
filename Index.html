@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scoreboard App</title>
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="./Style.css">
+</head>
+<body>
+
+    <div class="main">
+        <div class="container">
+            <!-- Timer Display -->
+            <h1 id="timer">10:00</h1>
+
+            <!-- Font Control Buttons -->
+            <div class="font-controls"><button onclick="changeFontSize(-2)">Decrease Font Size</button><button style="cursor:pointer; display:none;" id="btn-start-time"   onclick="toggleTimer()">Start</button>
+                <button onclick="changeFontSize(2)">Increase Font Size</button>	
+			</div>
+
+       <div class="input-container">
+                <div class="team-input">
+                    <div class="input-group">
+                        <label for="team1">Team 1 Name:</label>
+                        <input type="text" id="team1">
+                    </div>
+                    <div class="input-group">
+                        <label for="team2">Team 2 Name:</label>
+                        <input type="text" id="team2">
+                    </div>
+                </div>
+                <button style="cursor:pointer" id="btn-ready" onclick="readyGame()">Ready</button>
+            </div>
+            <!-- Score Container -->
+            <div class="score-container" style="display: none;">
+                <div class="score-board">
+                    <div class="team-1">  
+                        <h1 id="team1Name">1</h1>
+                        <div id="team1Score">0</div>
+                        <div class="buttons">
+                            <button onclick="addScore(-1, 'team1')">-1</button>
+                            <button onclick="addScore(1, 'team1')">+1</button>
+                            <button onclick="addScore(2, 'team1')">+2</button>
+                            <button onclick="addScore(3, 'team1')">+3</button>
+                        </div>
+                    </div>
+                    <div class="team-2">
+                        <h1 id="team2Name">2</h1>
+                        <div id="team2Score">0</div>
+                        <div class="buttons">
+                            <button onclick="addScore(-1, 'team2')">-1</button>
+                            <button onclick="addScore(1, 'team2')">+1</button>
+                            <button onclick="addScore(2, 'team2')">+2</button>
+                            <button onclick="addScore(3, 'team2')">+3</button>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="resetScore()">Reset Score</button>
+                <button onclick="resetGame()">Reset Game</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script JS -->
+    <script src="./Script.js"></script>
+</body>
+</html>
