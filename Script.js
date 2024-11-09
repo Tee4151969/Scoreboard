@@ -43,6 +43,8 @@ function startTimer() {
 function toggleTimer() {
     const timerButton = document.getElementById('btn-start-time');
    
+	 gameStartSound.play();
+	
     if (isTimerRunning) {
         // If timer is running, pause it
         clearInterval(countdown);
@@ -102,8 +104,6 @@ function startGame() {
     document.querySelector('.score-container').style.display = 'block';
 
     timeLeft = timeToSeconds(document.getElementById("timer").textContent); // Reset timer to 10 minutes
-	
-	 gameStartSound.play();
 	 
 }
 
@@ -145,8 +145,7 @@ function resetGame() {
     document.getElementById('team1Score').innerText = '0';
     document.getElementById('team2Score').innerText = '0';
 
-
-      clearInterval(countdown); // Stop the timer
+	clearInterval(countdown); // Stop the timer
     document.getElementById('timer').textContent = '10:00'; // Reset timer display
     isTimerRunning = false;
     enableButtons(); // Re-enable buttons
