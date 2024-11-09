@@ -14,8 +14,16 @@
             <!-- Timer Display -->
             <h1 id="timer">10:00</h1>
 
+<div id="group-settime" class="timer-controls">
+    <h2>Set Timer</h2>
+    <input type="number" id="timeInput" placeholder="10" min="1" max="999">
+    
+	<button id="setTimeButton" class="primary-button">Set Time</button>
+  
+</div>
             <!-- Font Control Buttons -->
-            <div class="font-controls"><button onclick="changeFontSize(-2)">Decrease Font Size</button><button style="cursor:pointer; display:none;" id="btn-start-time"   onclick="toggleTimer()">Start</button>
+            <div class="font-controls"><button onclick="changeFontSize(-2)">Decrease Font Size</button>
+			<button style="cursor:pointer; display:none;" id="btn-start-time"   onclick="toggleTimer()">Start</button>
                 <button onclick="changeFontSize(2)">Increase Font Size</button>	
 			</div>
 

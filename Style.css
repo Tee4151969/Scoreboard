@@ -94,6 +94,23 @@ body {
     background-color: #ff3b2e;
 }
 
+.input-container > button,
+.score-container > button { /* Targets both ready and reset buttons */
+    padding: 10px 30px;
+    font-size: 1rem;
+    background-color: #ff6f61; /* Match background color */
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.input-container > button:hover,
+.score-container > button:hover {
+    background-color: #ff3b2e; /* Darker on hover for all */
+}
+
 .score-board {
     display: flex;
     justify-content: space-between;
@@ -214,4 +231,39 @@ body {
         font-size: 14px;
         padding: 6px 15px;
     }
+}
+
+#timeInput {
+    padding: 10px;
+    font-size: 1rem;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+#timeInput:focus {
+    outline: none;
+    border: 2px solid #ffcc00;
+}
+
+.hidden {
+    display: none;
+}
+
+
+/* Shared Primary Button Style */
+.primary-button {
+    padding: 10px 30px;
+    font-size: 1rem;
+    background-color: #ff6f61; /* Match background color */
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.primary-button:hover {
+    background-color: #ff3b2e; /* Darker on hover */
 }
