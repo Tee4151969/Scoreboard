@@ -1,6 +1,11 @@
 let gameStartSound = new Audio('game-start.mp3'); 
 let gameEndSound = new Audio('game-end.mp3'); 
 
+ 
+let p1= new Audio('point_1.wav');
+let p2 = new Audio('point_2.wav');
+let p3 = new Audio('point_3.wav');
+
 let inputCon = document.querySelector('.input-container');
 let scoreBoard = document.querySelector('.score-container');
 let team1Input = document.getElementById('team1');
@@ -106,9 +111,11 @@ function startGame() {
     timeLeft = timeToSeconds(document.getElementById("timer").textContent); // Reset timer to 10 minutes
 	 
 }
+ 
 
 // Function to add score to a specific team
 function addScore(value, team) {
+	
     const scoreElement = document.getElementById(`${team}Score`);
     let currentScore = parseInt(scoreElement.textContent);
     currentScore += value;
@@ -116,6 +123,13 @@ function addScore(value, team) {
     if (currentScore < 0) currentScore = 0;
    
     scoreElement.textContent = currentScore;
+	if (value == 1){
+		p1.play()
+	}else if (value == 2){
+		p2.play()
+	}else if (value == 3){
+		p3.play()
+	}
 }
 
 // Function to reset the score and timer
@@ -213,5 +227,46 @@ function updateTimer() {
  
     const minutes = String(Math.floor(timerValue / 60)).padStart(2, '0');
     const seconds = String(timerValue % 60).padStart(2, '0');
-    document.getElementById("timer").textContent = `${minutes}:${seconds}`; } 
-	 
+    document.getElementById("timer").textContent = `${minutes}:${seconds}`; 
+} 
+
+function myFunction(event) {
+  let value= event.which; 
+   switch (value) {
+        // Keys for Team A scoring
+        case 49:
+            addScore(1, 'team1');
+            break;
+       case 50:
+            addScore(2, 'team1');
+            break;
+        case 51:
+            addScore(3, 'team1');
+            break;
+  
+		case 52:	
+            addScore(-1, 'team1');
+            break;
+        
+        // Keys for Team B scoring
+        case 61:
+            addScore(1, 'team2');
+            break;
+        case 45:
+            addScore(2, 'team2');
+            break;
+        case 48:
+            addScore(3, 'team2');
+            break;
+        case 57:
+            addScore(-1, 'team2');
+            break;
+
+
+        default:
+            break;
+    }
+	
+	
+  document.getElementById("demo").innerHTML = value;
+}
