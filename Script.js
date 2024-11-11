@@ -19,7 +19,7 @@ let team2ScoreElem = document.getElementById('team2Score');
 let countdown;
 let timeLeft = 600; // 10 minutes in seconds
 let isTimerRunning = false;
-  
+let isReady =false;  
 
 
 // Function to start the countdown timer
@@ -109,7 +109,7 @@ function startGame() {
     document.querySelector('.score-container').style.display = 'block';
 
     timeLeft = timeToSeconds(document.getElementById("timer").textContent); // Reset timer to 10 minutes
-	 
+	isReady = true; 
 }
  
 
@@ -140,38 +140,9 @@ function resetScore() {
 
 // Function to reset the game (clears names, hides scoreboard, resets timer)
 function resetGame() {
-   
-
-		document.getElementById("group-settime").classList.remove("hidden");
-
-  // Show the team name input fields again
-    document.querySelector('.team-input').style.display = 'block';
-    document.querySelector('.input-container').style.display = 'block';
-
-    // Hide the score container
-    document.querySelector('.score-container').style.display = 'none';
-
-    // Reset the team names and scores
-    document.getElementById('team1').value = '';
-    document.getElementById('team2').value = '';
-    document.getElementById('team1Name').innerText = '1';
-    document.getElementById('team2Name').innerText = '2';
-    document.getElementById('team1Score').innerText = '0';
-    document.getElementById('team2Score').innerText = '0';
-
-	clearInterval(countdown); // Stop the timer
-    document.getElementById('timer').textContent = '10:00'; // Reset timer display
-    isTimerRunning = false;
-    enableButtons(); // Re-enable buttons
-
-
-    // Reset timer to 10:00
-  document.getElementById('btn-start-time').textContent = 'Start'; // Reset button text
+  window.location.reload();
  
-    // Show the Ready button and hide the Start button
-    document.getElementById('btn-start-time').style.display = 'none';
-    document.getElementById('btn-ready').style.display = 'inline-block';
-}
+  }
 // Function to enable all scoring buttons
 function enableButtons() {
     const buttons = document.querySelectorAll('.buttons button');
@@ -232,6 +203,7 @@ function updateTimer() {
 
 function myFunction(event) {
   let value= event.which; 
+   if (isReady) {
    switch (value) {
         // Keys for Team A scoring
         case 49:
@@ -269,4 +241,4 @@ function myFunction(event) {
 	
 	
   document.getElementById("demo").innerHTML = value;
-}
+}}
