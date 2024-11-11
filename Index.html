@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./Style.css">
 </head>
 <body onkeypress="myFunction(event)">
-<p id="demo"></p>
+<p style='Display:none' id="demo"></p>
 
     <div class="main">
         <div class="container">
@@ -67,6 +67,7 @@
                 </div>
                 <button onclick="resetScore()">Reset Score</button>
                 <button onclick="resetGame()">Reset Game</button>
+				<button id="btn-export" Style="Display:none" onclick="exportScoreboardToCSV()">Export Score</button>
             </div>
         </div>
     </div>

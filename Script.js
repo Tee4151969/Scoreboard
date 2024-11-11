@@ -17,9 +17,11 @@ let team2ScoreElem = document.getElementById('team2Score');
 
 
 let countdown;
+let gametime = 600;
 let timeLeft = 600; // 10 minutes in seconds
 let isTimerRunning = false;
 let isReady =false;  
+ 
 
 
 // Function to start the countdown timer
@@ -37,12 +39,13 @@ function startTimer() {
             timerElement.textContent = "Time's Up!";
 			gameEndSound.play()
             disableButtons(); // Disable buttons when time is up
+			document.getElementById('btn-export').style.display = 'inline';
         }
        
         timeLeft--;
     }, 1000);
 }
-
+ 
 
 // Function to start or pause the timer
 function toggleTimer() {
@@ -109,6 +112,7 @@ function startGame() {
     document.querySelector('.score-container').style.display = 'block';
 
     timeLeft = timeToSeconds(document.getElementById("timer").textContent); // Reset timer to 10 minutes
+	gametime = timeLeft;
 	isReady = true; 
 }
  
@@ -242,3 +246,55 @@ function myFunction(event) {
 	
   document.getElementById("demo").innerHTML = value;
 }}
+
+
+function secondsToMinutes(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+}
+
+
+ 
+// Function to save the scoreboard data to CSV
+function exportScoreboardToCSV() {
+	let Team1 = team1NameElem.textContent;
+	let Team2 = team2NameElem.textContent;
+	let Score1 = team1ScoreElem.textContent;
+	let Score2 = team2ScoreElem.textContent; 
+	let filename = 'basketball_scoreboard.csv'
+	// Convert data to an array of objects for CSV formatting
+	const now = new Date();
+	const fullDateTimeISO = now.toISOString();
+    const data = [
+        { label: "Team 1", value: Team1, score:Score1 },
+        { label: "Team 2", value: Team2, score:Score2 },
+        { label: "Game Time", value: secondsToMinutes(gametime)},
+        { label: "Timestamp", value: fullDateTimeISO }
+    ];
+
+    // Extract headers and format CSV rows
+    const headers = Object.keys(data[0]);
+    const csvRows = [];
+    csvRows.push(headers.join(','));
+
+    for (const row of data) {
+        const values = headers.map(header => JSON.stringify(row[header] ?? ""));
+        csvRows.push(values.join(','));
+    }
+
+    // Create a Blob from the CSV data
+    const csvData = new Blob([csvRows.join('\n')], { type: 'texTt/csv' });
+    const csvUrl = URL.createObjectURL(csvData);
+
+    // Create a download link and trigger download
+    const link = document.createElement('a');
+    link.href = csvUrl;
+    link.download = filename;
+    link.style.display = 'none';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+	
+	
+}
